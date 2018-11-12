@@ -1,4 +1,5 @@
 const BOARD_SIZE = 9;
+const BOX_SIZE = BOARD_SIZE / 3;
 
 function Board(){
     this.remainingMoves = BOARD_SIZE * BOARD_SIZE;
@@ -89,10 +90,10 @@ function excludeRowOptions(board, y, options){
 }
 
 function excludeBoxOptions(board, cellX, cellY, options){
-    const xOffset = Math.floor(cellX/3)*3;
-    const yOffset = Math.floor(cellY/3)*3;
-    for(let x = 0; x < 3; x++){
-        for(let y = 0; y < 3; y++){
+    const xOffset = Math.floor(cellX / BOX_SIZE) * BOX_SIZE;
+    const yOffset = Math.floor(cellY / BOX_SIZE) * BOX_SIZE;
+    for(let x = 0; x < BOX_SIZE; x++){
+        for(let y = 0; y < BOX_SIZE; y++){
             const cell_val = board.get_cell(x + xOffset, y + yOffset);
             if(cell_val !== undefined){
                 options[cell_val - 1] = undefined;
